@@ -55,7 +55,6 @@ public class BitmapUtil {
 	 * ，将这个参数的inJustDecodeBounds属性设置为true就可以让解析方法禁止为bitmap分配内存
 	 * ，返回值也不再是一个Bitmap对象， 而是null。虽然Bitmap是null了，但是Options的outWidth、
 	 * outHeight和outMimeType属性都会被赋值。
-	 *
 	 * @param reqWidth  目标宽度,这里的宽高只是阀值，实际显示的图片将小于等于这个值
 	 * @param reqHeight 目标高度,这里的宽高只是阀值，实际显示的图片将小于等于这个值
 	 */
@@ -87,7 +86,6 @@ public class BitmapUtil {
 
 	/**
 	 * 获取一个指定大小的bitmap
-	 *
 	 * @param res       Resources
 	 * @param resId     图片ID
 	 * @param reqWidth  目标宽度
@@ -113,12 +111,10 @@ public class BitmapUtil {
 
 	/**
 	 * 获取一个指定大小的bitmap
-	 *
 	 * @param reqWidth  目标宽度
 	 * @param reqHeight 目标高度
 	 */
-	public static Bitmap getBitmapFromFile(String pathName, int reqWidth,
-										   int reqHeight) {
+	public static Bitmap getBitmapFromFile(String pathName, int reqWidth, int reqHeight) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(pathName, options);
@@ -128,7 +124,6 @@ public class BitmapUtil {
 
 	/**
 	 * 获取一个指定大小的bitmap
-	 *
 	 * @param data      Bitmap的byte数组
 	 * @param offset    image从byte数组创建的起始位置
 	 * @param length    the number of bytes, 从offset处开始的长度
@@ -146,7 +141,6 @@ public class BitmapUtil {
 
 	/**
 	 * 把bitmap转化为bytes
-	 *
 	 * @param bitmap 源Bitmap
 	 * @return Byte数组
 	 */
@@ -159,7 +153,6 @@ public class BitmapUtil {
 
 	/**
 	 * 获取一个指定大小的bitmap
-	 *
 	 * @param is         从输入流中读取Bitmap
 	 * @param outPadding If not null, return the padding rect for the bitmap if it
 	 *                   exists, otherwise set padding to [-1,-1,-1,-1]. If no bitmap
@@ -178,7 +171,6 @@ public class BitmapUtil {
 
 	/**
 	 * 从View获取Bitmap
-	 *
 	 * @param view View
 	 * @return Bitmap
 	 */
@@ -196,7 +188,6 @@ public class BitmapUtil {
 
 	/**
 	 * 把一个View的对象转换成bitmap
-	 *
 	 * @param view View
 	 * @return Bitmap
 	 */
@@ -228,7 +219,6 @@ public class BitmapUtil {
 
 	/**
 	 * 将Drawable转化为Bitmap
-	 *
 	 * @param drawable Drawable
 	 * @return Bitmap
 	 */
@@ -247,7 +237,6 @@ public class BitmapUtil {
 
 	/**
 	 * 合并Bitmap
-	 *
 	 * @param bgd 背景Bitmap
 	 * @param fg  前景Bitmap
 	 * @return 合成后的Bitmap
@@ -273,7 +262,6 @@ public class BitmapUtil {
 
 	/**
 	 * 合并
-	 *
 	 * @param bgd 后景Bitmap
 	 * @param fg  前景Bitmap
 	 * @return 合成后Bitmap
@@ -306,27 +294,29 @@ public class BitmapUtil {
 
 	/**
 	 * 放大缩小图片
-	 *
 	 * @param bitmap 源Bitmap
 	 * @param w      宽
 	 * @param h      高
 	 * @return 目标Bitmap
 	 */
 	public static Bitmap zoom(Bitmap bitmap, int w, int h) {
+		if (bitmap == null) {
+			return null;
+		}
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
+		if (width <= w && height <= h) {
+			return bitmap;
+		}
 		Matrix matrix = new Matrix();
 		float scaleWidht = ((float) w / width);
 		float scaleHeight = ((float) h / height);
 		matrix.postScale(scaleWidht, scaleHeight);
-		Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height,
-				matrix, true);
-		return newbmp;
+		return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
 	}
 
 	/**
 	 * 获得圆角图片的方法
-	 *
 	 * @param bitmap  源Bitmap
 	 * @param roundPx 圆角大小
 	 * @return 期望Bitmap
@@ -355,7 +345,6 @@ public class BitmapUtil {
 
 	/**
 	 * 获得带倒影的图片方法
-	 *
 	 * @param bitmap 源Bitmap
 	 * @return 带倒影的Bitmap
 	 */
@@ -396,7 +385,6 @@ public class BitmapUtil {
 
 	/**
 	 * 压缩图片大小
-	 *
 	 * @param image 源Bitmap
 	 * @return 压缩后的Bitmap
 	 */
@@ -417,7 +405,6 @@ public class BitmapUtil {
 
 	/**
 	 * 将彩色图转换为灰度图
-	 *
 	 * @param img 源Bitmap
 	 * @return 返回转换好的位图
 	 */
@@ -449,7 +436,6 @@ public class BitmapUtil {
 
 	/**
 	 * 转换图片成圆形
-	 *
 	 * @param bitmap 传入Bitmap对象
 	 * @return 圆形Bitmap
 	 */
@@ -512,7 +498,6 @@ public class BitmapUtil {
 	 * <p/>
 	 * This method is not thread-safe and should be invoked on the UI thread
 	 * only.
-	 *
 	 * @param bitmap  The bitmap to get a thumbnail of.
 	 * @param context The application's context.
 	 * @return A thumbnail for the specified bitmap or the bitmap itself if the
@@ -583,7 +568,6 @@ public class BitmapUtil {
 
 	/**
 	 * 生成水印图片 水印在右下角
-	 *
 	 * @param src       the bitmap object you want proecss
 	 * @param watermark the water mark above the src
 	 * @return return a bitmap object ,if paramter's length is 0,return null
@@ -613,7 +597,6 @@ public class BitmapUtil {
 
 	/**
 	 * 重新编码Bitmap
-	 *
 	 * @param src     需要重新编码的Bitmap
 	 * @param format  编码后的格式（目前只支持png和jpeg这两种格式）
 	 * @param quality 重新生成后的bitmap的质量
@@ -633,7 +616,6 @@ public class BitmapUtil {
 	 * <p/>
 	 * <br>
 	 * <b>说明</b> 如果bitmap本身的大小小于maxSize，则不作处理
-	 *
 	 * @param bitmap  要压缩的图片
 	 * @param maxSize 压缩后的大小，单位kb
 	 */
@@ -658,7 +640,6 @@ public class BitmapUtil {
 
 	/**
 	 * 图片的缩放方法
-	 *
 	 * @param src       ：源图片资源
 	 * @param newWidth  ：缩放后宽度
 	 * @param newHeight ：缩放后高度
@@ -681,7 +662,6 @@ public class BitmapUtil {
 
 	/**
 	 * 图片的缩放方法
-	 *
 	 * @param src         ：源图片资源
 	 * @param scaleMatrix ：缩放规则
 	 */
@@ -692,7 +672,6 @@ public class BitmapUtil {
 
 	/**
 	 * 图片的缩放方法
-	 *
 	 * @param src    ：源图片资源
 	 * @param scaleX ：横向缩放比例
 	 * @param scaleY ：纵向缩放比例
@@ -706,7 +685,6 @@ public class BitmapUtil {
 
 	/**
 	 * 图片的缩放方法
-	 *
 	 * @param src   ：源图片资源
 	 * @param scale ：缩放比例
 	 */
@@ -716,7 +694,6 @@ public class BitmapUtil {
 
 	/**
 	 * 旋转图片
-	 *
 	 * @param angle  旋转角度
 	 * @param bitmap 要旋转的图片
 	 * @return 旋转后的图片
@@ -730,7 +707,6 @@ public class BitmapUtil {
 
 	/**
 	 * 水平翻转处理
-	 *
 	 * @param bitmap 原图
 	 * @return 水平翻转后的图片
 	 */
@@ -743,7 +719,6 @@ public class BitmapUtil {
 
 	/**
 	 * 垂直翻转处理
-	 *
 	 * @param bitmap 原图
 	 * @return 垂直翻转后的图片
 	 */
@@ -755,9 +730,7 @@ public class BitmapUtil {
 
 	/**
 	 * 更改图片色系，变亮或变暗
-	 *
 	 * @param delta 图片的亮暗程度值，越小图片会越亮，取值范围(0,24)
-	 * @return
 	 */
 	public static Bitmap adjustTone(Bitmap src, int delta) {
 		if (delta >= 24 || delta <= 0) {
@@ -815,7 +788,6 @@ public class BitmapUtil {
 
 	/**
 	 * 将彩色图转换为黑白图
-	 *
 	 * @param bmp 位图
 	 * @return 返回转换好的位图
 	 */
@@ -846,7 +818,6 @@ public class BitmapUtil {
 
 	/**
 	 * 读取图片属性：图片被旋转的角度
-	 *
 	 * @param path 图片绝对路径
 	 * @return 旋转的角度
 	 */
@@ -876,7 +847,6 @@ public class BitmapUtil {
 
 	/**
 	 * Apply a blur to a Bitmap
-	 *
 	 * @param context    Application context
 	 * @param sentBitmap Bitmap to be converted
 	 * @param radius     Desired Radius, 0 < r < 25
@@ -1141,7 +1111,6 @@ public class BitmapUtil {
 
 	/**
 	 * 饱和度处理
-	 *
 	 * @param bitmap          原图
 	 * @param saturationValue 新的饱和度值
 	 * @return 改变了饱和度值之后的图片
@@ -1167,7 +1136,6 @@ public class BitmapUtil {
 
 	/**
 	 * 亮度处理
-	 *
 	 * @param bitmap   原图
 	 * @param lumValue 新的亮度值
 	 * @return 改变了亮度值之后的图片
@@ -1193,7 +1161,6 @@ public class BitmapUtil {
 
 	/**
 	 * 色相处理
-	 *
 	 * @param bitmap   原图
 	 * @param hueValue 新的色相值
 	 * @return 改变了色相值之后的图片
@@ -1223,7 +1190,6 @@ public class BitmapUtil {
 
 	/**
 	 * 亮度、色相、饱和度处理
-	 *
 	 * @param bitmap          原图
 	 * @param lumValue        亮度值
 	 * @param hueValue        色相值
@@ -1267,7 +1233,6 @@ public class BitmapUtil {
 
 	/**
 	 * 怀旧效果处理
-	 *
 	 * @param bitmap 原图
 	 * @return 怀旧效果处理后的图片
 	 */
@@ -1305,7 +1270,6 @@ public class BitmapUtil {
 
 	/**
 	 * 柔化效果处理
-	 *
 	 * @param bitmap 原图
 	 * @return 柔化效果处理后的图片
 	 */
@@ -1372,7 +1336,6 @@ public class BitmapUtil {
 
 	/**
 	 * 光照效果处理
-	 *
 	 * @param bitmap  原图
 	 * @param centerX 光源在X轴的位置
 	 * @param centerY 光源在Y轴的位置
@@ -1438,7 +1401,6 @@ public class BitmapUtil {
 
 	/**
 	 * 底片效果处理
-	 *
 	 * @param bitmap 原图
 	 * @return 底片效果处理后的图片
 	 */
@@ -1490,7 +1452,6 @@ public class BitmapUtil {
 
 	/**
 	 * 锐化效果处理
-	 *
 	 * @param bitmap 原图
 	 * @return 锐化效果处理后的图片
 	 */
@@ -1551,7 +1512,6 @@ public class BitmapUtil {
 
 	/**
 	 * 浮雕效果处理
-	 *
 	 * @param bitmap 原图
 	 * @return 浮雕效果处理后的图片
 	 */
@@ -1602,11 +1562,9 @@ public class BitmapUtil {
 
 	/**
 	 * 将YUV格式的图片的源数据从横屏模式转为竖屏模式，注意：将源图片的宽高互换一下就是新图片的宽高
-	 *
 	 * @param sourceData YUV格式的图片的源数据
 	 * @param width      源图片的宽
 	 * @param height     源图片的高
-	 * @return
 	 */
 	public static final byte[] yuvLandscapeToPortrait(byte[] sourceData,
 													  int width, int height) {

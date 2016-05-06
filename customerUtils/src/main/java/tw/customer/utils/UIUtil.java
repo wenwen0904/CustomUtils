@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 /**
  * UI操作，包括键盘
- *
  * @author: wenwen
  * @Date: 2016/3/21 18:14
  * @version: 1.0
@@ -32,12 +31,36 @@ public class UIUtil {
 	/**
 	 * 唯一Toast
 	 */
-	public static void doToast(Application context, String string) {
+//	public static void showToast(Context context, String string) {
+//		if (toast == null) {
+//			toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
+//		} else {
+//			toast.setText(string);
+//		}
+//		toast.show();
+//	}
+
+	/**
+	 * 唯一Toast
+	 */
+//	public static void showToast(String string) {
+//		if (toast == null) {
+//			return;
+//		}
+//		toast.setText(string);
+//		toast.show();
+//	}
+
+	/**
+	 * 唯一Toast
+	 */
+	public static void showToast(Application context, String string) {
 		if (toast == null) {
 			toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
 		} else {
 			toast.setText(string);
 		}
+		toast.setText(string);
 		toast.show();
 	}
 

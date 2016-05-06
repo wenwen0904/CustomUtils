@@ -162,8 +162,6 @@ public class NetUtil {
 		NET_NO, NET_2G, NET_3G, NET_4G, NET_WIFI, NET_UNKNOWN
 	}
 
-	;
-
 	/**
 	 * 判断当前是否网络连接
 	 *
@@ -225,7 +223,7 @@ public class NetUtil {
 		try {
 			String[] urlParts = url.split("\\?");
 			if (urlParts.length > 1) {
-				params = new HashMap<>();
+				params = new HashMap<String, String>();
 				String query = urlParts[1];
 				for (String param : query.split("&")) {
 					String[] pair = param.split("=");

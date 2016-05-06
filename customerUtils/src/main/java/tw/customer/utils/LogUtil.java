@@ -1,8 +1,6 @@
 package tw.customer.utils;
 
-import android.content.Context;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 /**
  * @author: wenwen
@@ -82,13 +80,6 @@ public class LogUtil {
 			if (e != null) {
 				e.printStackTrace();
 			}
-		}
-	}
-
-	public static void showToast(Context context, String content) {
-		if (isPrint) {
-			if (context != null && content != null)
-				Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
 		}
 	}
 

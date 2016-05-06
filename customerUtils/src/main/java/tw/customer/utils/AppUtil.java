@@ -27,7 +27,6 @@ import java.util.UUID;
 public class AppUtil {
 	/**
 	 * 得到软件版本号
-	 *
 	 * @param context 上下文
 	 * @return 当前版本Code
 	 */
@@ -44,7 +43,6 @@ public class AppUtil {
 
 	/**
 	 * 得到软件显示版本信息
-	 *
 	 * @param context 上下文
 	 * @return 当前版本信息
 	 */
@@ -61,7 +59,6 @@ public class AppUtil {
 
 	/**
 	 * 取得应用元数据（AndroidManifest.xml中配置的meta-data数据）
-	 *
 	 * @param context
 	 * @param key
 	 * @return String
@@ -80,10 +77,8 @@ public class AppUtil {
 
 	/**
 	 * 根据包名检查app是否已被安装
-	 *
 	 * @param context
 	 * @param packageName
-	 * @return
 	 */
 	public static boolean checkAPP(Context context, String packageName) {
 		if (packageName == null || "".equals(packageName))
@@ -98,10 +93,8 @@ public class AppUtil {
 
 	/**
 	 * 根据包名查看其它应用的信息
-	 *
 	 * @param context
 	 * @param packageName
-	 * @return
 	 */
 	public static PackageInfo getOtherPackageInfo(Context context, String packageName) {
 		PackageInfo info = null;
@@ -115,9 +108,7 @@ public class AppUtil {
 
 	/**
 	 * 判断应用是否在后台
-	 *
 	 * @param context
-	 * @return
 	 */
 	public static boolean isBackgroundRunning(Context context) {
 		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -135,7 +126,6 @@ public class AppUtil {
 
 	/**
 	 * 获取应用签名
-	 *
 	 * @param context 上下文
 	 * @param pkgName 包名
 	 */
@@ -151,7 +141,6 @@ public class AppUtil {
 
 	/**
 	 * 将签名字符串转换成需要的32位签名
-	 *
 	 * @param paramArrayOfByte 签名byte数组
 	 * @return 32位签名字符串
 	 */
@@ -178,7 +167,6 @@ public class AppUtil {
 
 	/**
 	 * 获取设备的可用内存大小
-	 *
 	 * @param context 应用上下文对象context
 	 * @return 当前内存大小
 	 */
@@ -192,7 +180,6 @@ public class AppUtil {
 
 	/**
 	 * 获取系统中所有的应用
-	 *
 	 * @param context 上下文
 	 * @return 应用信息List
 	 */
@@ -213,7 +200,6 @@ public class AppUtil {
 
 	/**
 	 * 获取手机系统SDK版本
-	 *
 	 * @return 如API 17 则返回 17
 	 */
 	public static int getSDKVersion() {
@@ -222,7 +208,6 @@ public class AppUtil {
 
 	/**
 	 * 是否ART模式
-	 *
 	 * @return 结果
 	 */
 	public static boolean isART() {
@@ -232,7 +217,6 @@ public class AppUtil {
 
 	/**
 	 * 获取手机当前的Runtime
-	 *
 	 * @return 正常情况下可能取值Dalvik, ART, ART debug build;
 	 */
 	public static String getCurrentRuntimeValue() {
@@ -272,9 +256,7 @@ public class AppUtil {
 
 	/**
 	 * 获取设备唯一标识
-	 *
 	 * @param context
-	 * @return
 	 */
 	public static String getUUID(Context context) {
 		final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -287,9 +269,17 @@ public class AppUtil {
 		return uniqueId;
 	}
 
+	public static String getIMEI(Context context) {
+		try {
+			TelephonyManager telephoneMngr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+			return telephoneMngr.getDeviceId();
+		} catch (Exception e) {
+			return "000000000000000";
+		}
+	}
+
 	/**
 	 * 检测服务是否运行
-	 *
 	 * @param context   上下文
 	 * @param className 类名
 	 * @return 是否运行的状态
@@ -308,7 +298,6 @@ public class AppUtil {
 
 	/**
 	 * 停止运行服务
-	 *
 	 * @param context   上下文
 	 * @param className 类名
 	 * @return 是否执行成功

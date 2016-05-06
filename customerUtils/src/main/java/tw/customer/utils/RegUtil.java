@@ -21,7 +21,7 @@ public class RegUtil {
 	// 电子邮件
 	private static String V_EMAIL = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
 	// 手机
-	private static String V_MOBILE = "(\\+\\d+)?1[3458]\\d{9}$";
+	private static String V_MOBILE = "(\\+\\d+)?1[123456789]\\d{9}$";
 	// 固定电话
 	private static String V_PHONE = "(\\+\\d+)?(\\d{3,4}\\-?)?\\d{7,8}$";
 	// 中文
